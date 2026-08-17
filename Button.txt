@@ -1,0 +1,13 @@
+import java.awt.*;
+
+public class Main {
+    public static void main(String[] args){
+        Frame myFrame = new Frame();
+        Button button = new Button("Text");
+        button.setBounds(100,100,100,100);
+        myFrame.add(button);
+        myFrame.setSize(1024,768);
+        myFrame.setLayout(null);
+        myFrame.setVisible(true);
+    }
+}
