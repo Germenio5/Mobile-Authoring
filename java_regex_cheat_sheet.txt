@@ -1,0 +1,110 @@
+JAVA REGEX CHEAT SHEET
+=======================
+
+CORE CLASSES
+------------
+Pattern p = Pattern.compile("regex");
+Matcher m = p.matcher(input);
+- p.matcher(String) -> Matcher
+- Pattern.matches("regex", input) -> boolean (quick one-off check)
+- String.matches("regex") -> boolean
+- String.replaceAll("regex", "replacement")
+- String.replaceFirst("regex", "replacement")
+- String.split("regex")
+
+MATCHER METHODS
+----------------
+m.matches()        - entire string matches pattern
+m.find()            - finds next subsequence that matches
+m.group()           - returns matched text
+m.group(n)          - returns text of capture group n
+m.start() / m.end() - index positions of match
+m.replaceAll("x")   - replace all matches
+m.reset()           - reset matcher
+
+CHARACTER CLASSES
+-------------------
+.        any character (except line terminator)
+\d       digit [0-9]
+\D       non-digit
+\w       word character [a-zA-Z0-9_]
+\W       non-word character
+\s       whitespace
+\S       non-whitespace
+[abc]    a, b, or c
+[^abc]   not a, b, or c
+[a-z]    a through z
+[a-zA-Z] a through z or A through Z
+
+QUANTIFIERS
+-------------
+*        0 or more
++        1 or more
+?        0 or 1
+{n}      exactly n
+{n,}     n or more
+{n,m}    between n and m
+*?  +?  ??  {n,m}?   -> reluctant (lazy) versions
+*+  ++  ?+  {n,m}+   -> possessive versions
+
+ANCHORS / BOUNDARIES
+-----------------------
+^        start of line/input
+$        end of line/input
+\b       word boundary
+\B       non-word boundary
+\A       start of input
+\Z       end of input (before final terminator)
+\z       very end of input
+
+GROUPS & BACKREFERENCES
+--------------------------
+(...)          capturing group
+(?:...)        non-capturing group
+(?<name>...)   named capturing group
+\1, \2         backreference to group 1, 2
+(?<name>) then m.group("name")
+
+LOGICAL / LOOKAROUND
+------------------------
+X|Y          X or Y
+(?=X)        lookahead - positive
+(?!X)        lookahead - negative
+(?<=X)       lookbehind - positive
+(?<!X)       lookbehind - negative
+
+ESCAPING SPECIAL CHARS
+--------------------------
+Special chars: . ^ $ * + ? ( ) [ ] { } | \
+Escape with backslash: \.  \*  etc.
+In Java strings, backslash itself needs escaping: "\\d" for \d
+Use Pattern.quote("text") to escape a whole literal string
+
+FLAGS (Pattern.compile(regex, flag))
+----------------------------------------
+Pattern.CASE_INSENSITIVE
+Pattern.MULTILINE
+Pattern.DOTALL       (. matches line terminators too)
+Pattern.COMMENTS     (allows whitespace/comments in pattern)
+Inline flags: (?i) case-insensitive, (?m) multiline, (?s) dotall
+
+COMMON EXAMPLES
+------------------
+Email (basic):        ^[\w.+-]+@[\w-]+\.[a-zA-Z]{2,}$
+Digits only:           ^\d+$
+Letters only:          ^[a-zA-Z]+$
+Phone (simple US):     ^\d{3}-\d{3}-\d{4}$
+Whitespace trim:       \s+
+Extract numbers:       \d+
+Password (8+, 1 num, 1 upper): ^(?=.*[0-9])(?=.*[A-Z]).{8,}$
+Split by comma+space:  ,\s*
+
+QUICK CODE PATTERN
+---------------------
+import java.util.regex.*;
+
+Pattern p = Pattern.compile("\\d+");
+Matcher m = p.matcher("Order 123, Item 456");
+while (m.find()) {
+    System.out.println(m.group());
+}
