@@ -1,0 +1,62 @@
+JAVA REGEX & SUBSTRING NOTES
+===============================
+
+1. REGEX MATCHING (with Scanner input)
+------------------------------------------
+import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter a string: ");
+        String input = scanner.nextLine();
+
+        String patt = "[^0-9]"; // matches everything that is NOT a digit
+        Pattern pattern = Pattern.compile(patt);
+        Matcher match = pattern.matcher(input);
+
+        while (match.find()) {
+            System.out.println(match.group()); // print each matched character
+        }
+    }
+}
+
+Note: use match.group() to print the actual matched text.
+(System.out.println(patt) would just print the pattern string every loop.)
+
+Example run:
+Enter a string: Hello World! 123
+H
+e
+l
+l
+o
+(space)
+W
+o
+r
+l
+d
+!
+(space)
+-> digits 1, 2, 3 are skipped since the pattern excludes numbers
+
+
+2. SUBSTRING + CONCAT
+--------------------------
+public class Main {
+    public static void main(String[] args) {
+        String x = "Hello";
+        String y = "World";
+
+        String foo = x.substring(2, 4); // characters at index 2 up to (not including) 4 -> "ll"
+        String z = foo.concat(" " + y); // "ll" + " " + "World" -> "ll World"
+
+        System.out.println(foo); // ll
+        System.out.println(z);   // ll World
+    }
+}
+
+Reminder: substring(start, end) -> start is inclusive, end is exclusive.
