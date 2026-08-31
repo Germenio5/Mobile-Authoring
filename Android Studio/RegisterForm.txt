@@ -1,0 +1,54 @@
+package com.example.mypractice;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+
+import org.jetbrains.annotations.TestOnly;
+
+public class MainActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
+        setContentView(R.layout.activity_main);
+        final Button register_button = findViewById(R.id.registerButton);
+        final TextView first_name = findViewById(R.id.first_name);
+        final TextView last_name = findViewById(R.id.last_name);
+        final TextView email = findViewById(R.id.email);
+        final EditText edit_first_name = findViewById(R.id.edit_first_name);
+        final EditText edit_last_name = findViewById(R.id.edit_last_name);
+        final EditText edit_email = findViewById(R.id.edit_email);
+
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            return insets;
+        });
+
+        register_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String get_first_name, get_last_name, get_email;
+                get_first_name = edit_first_name.getText().toString();
+                get_last_name = edit_last_name.getText().toString();
+                get_email = edit_email.getText().toString();
+                first_name.setText("First Name: " + get_first_name);
+                last_name.setText("Last Name: " + get_last_name);
+                email.setText("Email: "+ get_email);
+            }
+        });
+
+        Toast.makeText(MainActivity.this, "Hello User!", Toast.LENGTH_LONG).show();
+    }
+}
