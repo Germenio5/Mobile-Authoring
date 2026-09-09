@@ -1,0 +1,71 @@
+package com.example.myapplication;
+
+import android.os.Bundle;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
+
+public class MainActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
+        setContentView(R.layout.activity_main);
+
+        String username = "Germenio";
+        String password = "123";
+
+        final BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNav);
+        final EditText username_text = findViewById(R.id.username_id);
+        final EditText password_text = findViewById(R.id.password_id);
+        final Button login_button = findViewById(R.id.login_button);
+
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            return insets;
+        });
+
+        login_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String get_username, get_password;
+                get_username = username_text.getText().toString();
+                get_password = password_text.getText().toString();
+
+                if (get_username.equals(username) && get_password.equals(password)){
+                    setContentView(R.layout.secondpage);
+                    Toast.makeText(MainActivity.this, "Welcome, " + get_username, Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(MainActivity.this, "Incorrect Username or Password", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                int id = menuItem.getItemId();
+                if(id==R.id.account_id){
+                    Toast.makeText(MainActivity.this, "This is Account!", Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(MainActivity.this, "This is Cart!", Toast.LENGTH_SHORT).show();
+                }
+                return false;
+            }
+        });
+    }
+}
