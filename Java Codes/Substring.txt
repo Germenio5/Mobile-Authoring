@@ -1,0 +1,8 @@
+class Main {
+    public static void main(String[] args) {
+     String x = "Hello";
+     String y = "World";
+     String foo = x.substring(0,2); //(left, right)
+     System.out.println(foo);
+    }
+}

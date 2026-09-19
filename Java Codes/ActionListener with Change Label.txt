@@ -1,0 +1,24 @@
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class Main {
+    public static void main(String[] args){
+        Frame myFrame = new Frame();
+        Label label = new Label("Hello");
+        label.setBounds(800,200,100,100);
+        Button button = new Button("Enter");
+        button.setBounds(100,100,100,100);
+        button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                label.setText("Hello World!");
+            }
+        });
+        myFrame.add(label);
+        myFrame.add(button);
+        myFrame.setSize(1024,768);
+        myFrame.setLayout(null);
+        myFrame.setVisible(true);
+    }
+}

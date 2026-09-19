@@ -1,0 +1,10 @@
+class Main {
+    public static void main(String[] args) {
+        //StringBuilder
+        
+        StringBuilder x = new StringBuilder("Hello");
+        x.append(" World");
+        x.append(" There");
+        System.out.println(x);
+    }
+}

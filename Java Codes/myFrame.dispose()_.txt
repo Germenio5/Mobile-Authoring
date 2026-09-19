@@ -1,0 +1,37 @@
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class Main {
+    public static void main(String[] args){
+        Frame myFrame = new Frame();
+        TextField textfield = new TextField();
+        textfield.setBounds(100, 400, 200,25);
+        Label label = new Label("Hello World!");
+        label.setBounds(800,200,100,100);
+        Button button = new Button("Click");
+        Button button_exit = new Button("Exit");
+        button.setBounds(100,100,100,100);
+        button_exit.setBounds(100,500,100,25);
+        button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String x = textfield.getText();
+                label.setText(x);
+            }
+        });
+        button_exit.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                myFrame.dispose();
+            }
+        });
+        myFrame.add(textfield);
+        myFrame.add(label);
+        myFrame.add(button);
+        myFrame.add(button_exit);
+        myFrame.setSize(1024,768);
+        myFrame.setLayout(null);
+        myFrame.setVisible(true);
+    }
+}

@@ -1,0 +1,9 @@
+class Main {
+    public static void main(String[] args) {
+        //New String
+        
+        String myString = "Hello";
+        String myNew = new String(myString + "try");
+        System.out.println(myNew);
+    }
+}
