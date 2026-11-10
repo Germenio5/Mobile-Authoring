@@ -1,0 +1,46 @@
+xml version=1.0 encoding=utf-8
+androidx.constraintlayout.widget.ConstraintLayout xmlnsandroid=httpschemas.android.comapkresandroid
+    xmlnsapp=httpschemas.android.comapkres-auto
+    xmlnstools=httpschemas.android.comtools
+    androidid=@+idmain
+    androidlayout_width=match_parent
+    androidlayout_height=match_parent
+    toolscontext=.MainActivity
+
+    Button
+        androidid=@+idstart_button
+        androidlayout_width=wrap_content
+        androidlayout_height=wrap_content
+        androidtext=Button
+        applayout_constraintBottom_toBottomOf=parent
+        applayout_constraintEnd_toEndOf=parent
+        applayout_constraintHorizontal_bias=0.498
+        applayout_constraintStart_toStartOf=parent
+        applayout_constraintTop_toTopOf=parent
+        applayout_constraintVertical_bias=0.808 
+
+    ImageView
+        androidid=@+idimageView1
+        androidlayout_width=234dp
+        androidlayout_height=418dp
+        applayout_constraintBottom_toTopOf=@+idstart_button
+        applayout_constraintEnd_toEndOf=parent
+        applayout_constraintHorizontal_bias=0.271
+        applayout_constraintStart_toStartOf=parent
+        applayout_constraintTop_toTopOf=parent
+        applayout_constraintVertical_bias=0.477
+        appsrcCompat=@drawableanim_list1 
+
+    ImageView
+        androidid=@+idimageView2
+        androidlayout_width=63dp
+        androidlayout_height=122dp
+        androidcropToPadding=true
+        applayout_constraintBottom_toBottomOf=parent
+        applayout_constraintEnd_toEndOf=parent
+        applayout_constraintHorizontal_bias=0.169
+        applayout_constraintStart_toStartOf=parent
+        applayout_constraintTop_toTopOf=parent
+        applayout_constraintVertical_bias=0.31
+        appsrcCompat=@drawableanim_list2 
+androidx.constraintlayout.widget.ConstraintLayout
